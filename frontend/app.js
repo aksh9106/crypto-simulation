@@ -172,9 +172,11 @@ createApp({
         
         // Enhanced chart initialization
         initializeCharts() {
-            this.initializePerformanceChart();
-            this.initializePriceChart();
-            this.initializeAllocationChart();
+            setTimeout(() => {
+                this.initializePerformanceChart();
+                this.initializePriceChart();
+                this.initializeAllocationChart();
+            }, 100);
         },
         
         initializePerformanceChart() {
@@ -513,7 +515,11 @@ createApp({
         },
         
         formatPercentage(value) {
-            return value >= 0 ? '+' + value.toFixed(2) + '%' : value.toFixed(2) + '%';
+            if (value >= 0) {
+                return '+' + value.toFixed(2) + '%';
+            } else {
+                return value.toFixed(2) + '%';
+            }
         },
         
         formatMarketCap(value) {
