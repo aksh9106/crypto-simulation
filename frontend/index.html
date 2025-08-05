@@ -16,7 +16,7 @@
             <div class="nav-container">
                 <div class="nav-logo">
                     <i class="fas fa-coins"></i>
-                    <span>CryptoSim Pro</span>
+                    <span>CryptoSim</span>
                 </div>
                 <div class="nav-menu">
                     <a href="#dashboard" class="nav-link active">Dashboard</a>
@@ -31,8 +31,8 @@
             <!-- Dashboard Section -->
             <section id="dashboard" class="section active">
                 <div class="dashboard-header">
-                    <h1>Advanced Crypto Investment Simulation</h1>
-                    <p>Professional-grade crypto portfolio management with real-time analytics</p>
+                    <h1>Crypto Investment Simulation</h1>
+                    <p>Simulate your crypto investment strategy with real historical data</p>
                 </div>
 
                 <div class="stats-grid">
@@ -65,11 +65,9 @@
                             <i class="fas fa-calendar"></i>
                         </div>
                         <div class="stat-content">
-                            <h3>Market Cap</h3>
-                            <p class="stat-value">{{ formatMarketCap(marketOverview.totalMarketCap) }}</p>
-                            <p class="stat-change" :class="marketOverview.marketChange24h >= 0 ? 'positive' : 'negative'">
-                                {{ formatPercentage(marketOverview.marketChange24h) }}
-                            </p>
+                            <h3>Simulation Period</h3>
+                            <p class="stat-value">{{ simulationPeriod }}</p>
+                            <p class="stat-change">Months</p>
                         </div>
                     </div>
 
@@ -85,64 +83,17 @@
                     </div>
                 </div>
 
-                <div class="charts-container">
-                    <div class="chart-row">
-                        <div class="chart-card">
-                            <h3><i class="fas fa-chart-area"></i> Portfolio Performance</h3>
-                            <div class="chart-container">
-                                <canvas id="performanceChart"></canvas>
-                            </div>
-                        </div>
-                        
-                        <div class="chart-card">
-                            <h3><i class="fas fa-chart-pie"></i> Portfolio Allocation</h3>
-                            <div class="chart-container">
-                                <canvas id="allocationChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-row">
-                        <div class="chart-card">
-                            <h3><i class="fas fa-chart-bar"></i> Crypto Prices</h3>
-                            <div class="chart-container">
-                                <canvas id="priceChart"></canvas>
-                            </div>
-                        </div>
-                        
-                        <div class="market-overview-card">
-                            <h3><i class="fas fa-globe"></i> Market Overview</h3>
-                            <div class="market-stats">
-                                <div class="market-stat">
-                                    <span class="label">Total Market Cap:</span>
-                                    <span class="value">{{ formatMarketCap(marketOverview.totalMarketCap) }}</span>
-                                </div>
-                                <div class="market-stat">
-                                    <span class="label">24h Volume:</span>
-                                    <span class="value">{{ formatMarketCap(marketOverview.totalVolume24h) }}</span>
-                                </div>
-                                <div class="market-stat">
-                                    <span class="label">BTC Dominance:</span>
-                                    <span class="value">{{ marketOverview.btcDominance }}%</span>
-                                </div>
-                                <div class="market-stat">
-                                    <span class="label">Market Change:</span>
-                                    <span class="value" :class="marketOverview.marketChange24h >= 0 ? 'positive' : 'negative'">
-                                        {{ formatPercentage(marketOverview.marketChange24h) }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
                 </div>
             </section>
 
             <!-- Portfolio Section -->
             <section id="portfolio" class="section">
                 <div class="section-header">
-                    <h2>Portfolio Management</h2>
+                    <h2>Portfolio Allocation</h2>
                     <button @click="rebalancePortfolio" class="btn btn-primary">
-                        <i class="fas fa-sync-alt"></i> Rebalance Portfolio
+                        <i class="fas fa-sync-alt"></i> Rebalance
                     </button>
                 </div>
 
@@ -174,10 +125,6 @@
                                 <span>Quantity:</span>
                                 <span>{{ crypto.quantity.toFixed(4) }}</span>
                             </div>
-                            <div class="detail-row">
-                                <span>Market Cap:</span>
-                                <span>{{ formatMarketCap(crypto.marketCap) }}</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,7 +133,7 @@
             <!-- Simulation Section -->
             <section id="simulation" class="section">
                 <div class="section-header">
-                    <h2>Advanced Strategy Simulation</h2>
+                    <h2>Strategy Simulation</h2>
                     <div class="simulation-controls">
                         <button @click="startSimulation" class="btn btn-success" :disabled="isSimulating">
                             <i class="fas fa-play"></i> Start Simulation
@@ -252,48 +199,48 @@
             <!-- Strategy Section -->
             <section id="strategy" class="section">
                 <div class="section-header">
-                    <h2>Top 5 Strategy Pro</h2>
+                    <h2>Top 5 Strategy</h2>
                 </div>
 
                 <div class="strategy-content">
                     <div class="strategy-card">
-                        <h3><i class="fas fa-lightbulb"></i> Advanced Strategy Overview</h3>
-                        <p>This enhanced simulation implements the proven "Top 5 Strategy" with advanced risk management and real-time market analysis. The strategy automatically rebalances monthly to maintain optimal allocation while adapting to market conditions.</p>
+                        <h3><i class="fas fa-lightbulb"></i> Strategy Overview</h3>
+                        <p>This simulation implements the proven "Top 5 Strategy" which focuses on investing in the 5 cryptocurrencies with the highest market capitalization. The strategy automatically rebalances monthly to maintain optimal allocation.</p>
                         
                         <div class="strategy-steps">
                             <div class="step">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
-                                    <h4>Dynamic Top 5 Selection</h4>
-                                    <p>Continuously monitor and select the 5 cryptocurrencies with the highest market capitalization and stability metrics</p>
+                                    <h4>Identify Top 5</h4>
+                                    <p>Select the 5 cryptocurrencies with the highest market cap</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h4>Advanced Weighted Allocation</h4>
-                                    <p>Use square root of market cap combined with volatility analysis for optimal risk-adjusted distribution</p>
+                                    <h4>Weighted Allocation</h4>
+                                    <p>Allocate capital using square root of market cap for optimal distribution</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h4>Intelligent Rebalancing</h4>
-                                    <p>Monthly rebalancing with market trend analysis and momentum indicators</p>
+                                    <h4>Monthly Rebalancing</h4>
+                                    <p>Rebalance portfolio monthly to maintain Top 5 allocation</p>
                                 </div>
                             </div>
                             <div class="step">
                                 <div class="step-number">4</div>
                                 <div class="step-content">
-                                    <h4>Long-term Optimization</h4>
-                                    <p>4+ year investment horizon with cycle analysis and market timing optimization</p>
+                                    <h4>Long-term Hold</h4>
+                                    <p>Maintain strategy for 4+ years to capture full market cycles</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="strategy-card">
-                        <h3><i class="fas fa-chart-bar"></i> Enhanced Performance Metrics</h3>
+                        <h3><i class="fas fa-chart-bar"></i> Historical Performance</h3>
                         <div class="performance-metrics">
                             <div class="metric">
                                 <span class="metric-label">Strategy Return (2016-2024):</span>
@@ -306,14 +253,6 @@
                             <div class="metric">
                                 <span class="metric-label">Risk Reduction:</span>
                                 <span class="metric-value">-65%</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-label">Sharpe Ratio:</span>
-                                <span class="metric-value positive">2.34</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-label">Max Drawdown:</span>
-                                <span class="metric-value">-23%</span>
                             </div>
                         </div>
                     </div>
